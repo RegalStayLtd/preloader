@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background: #fff;
+        background: linear-gradient(to right, #c0392b, #8e44ad);
+        font-family: Arial;
+      }
+      .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .atom {
+        background: #000;
+        background: linear-gradient(to right, #c0392b, #8e44ad);
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 99999;
+      }
+      .ring {
+        border-radius: 50%;
+        border: 1px solid #fff;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-transform: rotateX(80deg) rotateY(20deg);
+        transform: rotateX(80deg) rotateY(20deg);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -100px;
+        margin-top: -100px;
+      }
+      .ring:first-of-type:after {
+        /* Core */
+        content: "";
+        position: absolute;
+        height: 40px;
+        width: 40px;
+        background: #fff;
+        border-radius: 50%;
+        -webkit-transform: rotateX(-80deg) rotateY(0);
+        transform: rotateX(-80deg) rotateY(0);
+        box-shadow: 0 0 25px #fff;
+        -webkit-animation: nucleus_ 2s infinite linear;
+        animation: nucleus_ 2s infinite linear;
+        left: 50%;
+        top: 50%;
+        margin-top: -20px;
+        margin-left: -20px;
+      }
+      .ring:nth-of-type(2) {
+        /* Ring */
+        -webkit-transform: rotateX(-80deg) rotateY(20deg);
+        transform: rotateX(-80deg) rotateY(20deg);
+      }
+      .ring:nth-of-type(2) > .neutron,
+      .ring:nth-of-type(2) > .neutron:after {
+        /* Ring */
+        -webkit-animation-delay: -0.5s;
+        animation-delay: -0.5s;
+      }
+      .ring:nth-of-type(3) {
+        /* Ring */
+        -webkit-transform: rotateX(-70deg) rotateY(60deg);
+        transform: rotateX(-70deg) rotateY(60deg);
+      }
+      .ring:nth-of-type(3) > .neutron,
+      .ring:nth-of-type(3) > .neutron:after {
+        /* Ring */
+        -webkit-animation-delay: -1s;
+        animation-delay: -1s;
+      }
+      .ring:nth-of-type(4) {
+        /* Ring */
+        -webkit-transform: rotateX(70deg) rotateY(60deg);
+        transform: rotateX(70deg) rotateY(60deg);
+      }
+      .ring:nth-of-type(4) > .neutron,
+      .ring:nth-of-type(4) > .neutron:after {
+        /* Ring */
+        -webkit-animation-delay: -1.5s;
+        animation-delay: -1.5s;
+      }
+      .ring > .neutron {
+        /* Rings */
+        width: 200px;
+        height: 200px;
+        position: relative;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-animation: trail_ 2s infinite linear;
+        animation: trail_ 2s infinite linear;
+      }
+      .ring > .neutron:after {
+        content: "";
+        position: absolute;
+        top: -5px;
+        box-shadow: 0 0 12px #fff;
+        left: 50%;
+        margin-left: -5px;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: #fff;
+        -webkit-animation: particle_ 2s infinite linear;
+        animation: particle_ 2s infinite linear;
+      }
+
+      @-webkit-keyframes trail_ {
+        from {
+          -webkit-transform: rotateZ(0deg);
+          transform: rotateZ(0deg);
+        }
+        to {
+          -webkit-transform: rotateZ(360deg);
+          transform: rotateZ(360deg);
+        }
+      }
+
+      @keyframes trail_ {
+        from {
+          -webkit-transform: rotateZ(0deg);
+          transform: rotateZ(0deg);
+        }
+        to {
+          -webkit-transform: rotateZ(360deg);
+          transform: rotateZ(360deg);
+        }
+      }
+      @-webkit-keyframes particle_ {
+        from {
+          -webkit-transform: rotateX(90deg) rotateY(0deg);
+          transform: rotateX(90deg) rotateY(0deg);
+        }
+        to {
+          -webkit-transform: rotateX(90deg) rotateY(-360deg);
+          transform: rotateX(90deg) rotateY(-360deg);
+        }
+      }
+      @keyframes particle_ {
+        from {
+          -webkit-transform: rotateX(90deg) rotateY(0deg);
+          transform: rotateX(90deg) rotateY(0deg);
+        }
+        to {
+          -webkit-transform: rotateX(90deg) rotateY(-360deg);
+          transform: rotateX(90deg) rotateY(-360deg);
+        }
+      }
+      @-webkit-keyframes nucleus_ {
+        0%,
+        100% {
+          box-shadow: 0 0 0 transparent;
+        }
+        50% {
+          box-shadow: 0 0 25px #fff;
+        }
+      }
+      @keyframes nucleus_ {
+        0%,
+        100% {
+          box-shadow: 0 0 0 transparent;
+        }
+        50% {
+          box-shadow: 0 0 25px #fff;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="atom">
+      <div class="ring">
+        <div class="neutron"></div>
+      </div>
+      <div class="ring">
+        <div class="neutron"></div>
+      </div>
+      <div class="ring">
+        <div class="neutron"></div>
+      </div>
+      <div class="ring">
+        <div class="neutron"></div>
+      </div>
+    </div>
+    <h1 class="center">Website Content</h1>
+  </body>
+
+  <script>
+    $(document).ready(function () {
+      setTimeout(function () {
+        $(".atom").fadeOut(1500, function () {
+          $(this).remove();
+        });
+      }, 4500);
+    });
+  </script>
+</html>
