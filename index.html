@@ -4,6 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <script>
+      $(document).ready(function () {
+        setTimeout(function () {
+          $(".atom").fadeOut(1500, function () {
+            $(this).remove();
+          });
+        }, 4500);
+      });
+    </script>
     <style>
       body {
         background: #fff;
@@ -194,14 +203,4 @@
     </div>
     <h1 class="center">Website Content</h1>
   </body>
-
-  <script>
-    $(document).ready(function () {
-      setTimeout(function () {
-        $(".atom").fadeOut(1500, function () {
-          $(this).remove();
-        });
-      }, 4500);
-    });
-  </script>
 </html>
